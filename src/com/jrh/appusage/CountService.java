@@ -7,7 +7,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
-import android.widget.Toast;
 
 public class CountService extends Service{
 	private Handler handler = new Handler();
@@ -29,7 +28,7 @@ public class CountService extends Service{
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		// Service被终止的同时也停止定时器继续运行
+		// When Service is stopped,stop the Timer too.
 		timer.cancel();
 		timer = null;
 	}
@@ -41,16 +40,12 @@ public class CountService extends Service{
 			handler.post(new Runnable() {
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
 					AppInfoService appInfoService = new AppInfoService(getApplicationContext());
 					AppInfo appInfo = CountManager.getTopActivity(getApplicationContext());
 					
-					//CountManager.curPkgName = appInfo.getPkgname();
-					
 					if(!appInfo.getPkgname().equals(curPkgName)){
-						//System.out.println("改变了");
+						//TopActivity is changed,which means related data in the database should be changed
 						curPkgName = appInfo.getPkgname();
-						//下面是数据库操作
 						appInfoService.dealWithIt(appInfo);
 						appInfoService.closeDB();
 					}

@@ -16,8 +16,9 @@ public class AppInfoService {
 	}
 
 	/**
-	 * 根据appInfo查询数据库,如果没有记录，则添加，total记为1
-	 * 如果有记录，则修改total的值为total+1
+	 * Query the database according to the given parameter,
+	 * if there is no record, do the insert, and total is 1
+	 * if there is a record,total should be total+1
 	 * @param appInfo
 	 */
 	public void dealWithIt(AppInfo appInfo) {
@@ -39,15 +40,15 @@ public class AppInfoService {
 	}
 
 	/**
-	 * 从数据库获取ListView的数据源
+	 * Get the data from from database for ListView
 	 * @return
 	 */
 	public List<AppInfo> getAllApps() {
 		List<AppInfo> appList = new ArrayList<AppInfo>();
-		SQLiteDatabase db = dbOpenHelper.getReadableDatabase(); // 磁盘空间已满也可以读出数据
+		SQLiteDatabase db = dbOpenHelper.getReadableDatabase(); 
 		Cursor cursor = db.rawQuery(
 				"select * from appInfo order by total asc",null);
-		while (cursor.moveToNext()) { // 类似方法 ResultSet.next()
+		while (cursor.moveToNext()) {
 			String pname = cursor.getString(cursor.getColumnIndex("pkgName"));
 			String label = cursor.getString(cursor.getColumnIndex("label"));
 			int total = cursor.getInt(cursor.getColumnIndex("total"));

@@ -38,13 +38,6 @@ public class MainActivity extends Activity {
 		
 	}
 	
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-		
-	}
-	
 	private void initUI(){
 		mTitle = (TextView) findViewById(R.id.app_name);
 		mTotal = (TextView) findViewById(R.id.total);

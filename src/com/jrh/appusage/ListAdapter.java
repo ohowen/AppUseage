@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 public class ListAdapter extends BaseAdapter{
 	private Context mContext;
-	private LayoutInflater mInflater; // 用于解析XML
-	public List<AppInfo> mList; // 数据源
+	private LayoutInflater mInflater; 
+	public List<AppInfo> mList; 
 	
 	public ListAdapter(Context context, List<AppInfo> list)
 	  {
@@ -54,7 +54,6 @@ public class ListAdapter extends BaseAdapter{
 		if(convertView == null){
 			viewHolder = new ViewHolder();
 			convertView = mInflater.inflate(R.layout.sub_item, null);
-			//viewHolder.img = (ImageView) convertView.findViewById(R.id.img);
 			viewHolder.label = (TextView) convertView.findViewById(R.id.name);
 			viewHolder.total = (TextView) convertView.findViewById(R.id.total);
 			convertView.setTag(viewHolder);
