@@ -4,10 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnItemSelectedListener{
+	private Spinner mSpinner;
+	private ArrayAdapter<CharSequence> mArrayAdapter;
 	private ListView mListView;
 	private ListAdapter mListAdapter;
 	private TextView mTitle, mTotal;
@@ -22,12 +29,17 @@ public class MainActivity extends Activity {
 		mContext = this;
 		initUI();
 		
-		Intent intent = new Intent(MainActivity.this,CountService.class);
-		startService(intent);
+		mArrayAdapter = ArrayAdapter.createFromResource(this,
+				R.array.mode_array, android.R.layout.simple_spinner_item);
+		mArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		mSpinner.setAdapter(mArrayAdapter);
 		
 		appInfoService = new AppInfoService(mContext);
 		mListAdapter = new ListAdapter(mContext,appInfoService.getAllApps());
 		mListView.setAdapter(mListAdapter);
+		
+		Intent intent = new Intent(MainActivity.this,CountService.class);
+		startService(intent);
 	}
 	
 	@Override
@@ -42,5 +54,20 @@ public class MainActivity extends Activity {
 		mTitle = (TextView) findViewById(R.id.app_name);
 		mTotal = (TextView) findViewById(R.id.total);
 		mListView = (ListView) findViewById(R.id.listView1);
+		mSpinner = (Spinner) findViewById(R.id.mode_spinner);
+		mSpinner.setOnItemSelectedListener(this);
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int position,
+			long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		// TODO Auto-generated method stub
+		
 	}
 }
