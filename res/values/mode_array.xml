@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="mode_array">
+        <item>Home</item>
+        <item>Work</item>
+        <item>Car</item>
+    </string-array>
+</resources>
