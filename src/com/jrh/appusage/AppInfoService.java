@@ -47,7 +47,7 @@ public class AppInfoService {
 		List<AppInfo> appList = new ArrayList<AppInfo>();
 		SQLiteDatabase db = dbOpenHelper.getReadableDatabase(); 
 		Cursor cursor = db.rawQuery(
-				"select * from appInfo order by total asc",null);
+				"select * from appInfo order by total desc",null);
 		while (cursor.moveToNext()) {
 			String pname = cursor.getString(cursor.getColumnIndex("pkgName"));
 			String label = cursor.getString(cursor.getColumnIndex("label"));

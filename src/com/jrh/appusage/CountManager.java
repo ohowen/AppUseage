@@ -28,7 +28,6 @@ public class CountManager {
 		mActivityManager = (ActivityManager) context
 				.getSystemService(Context.ACTIVITY_SERVICE);
 		mPackageManager = context.getPackageManager();
-		new ArrayList<AppInfo>();
 		List<RunningTaskInfo> tasksInfo = mActivityManager.getRunningTasks(1);
 		if (tasksInfo.size() > 0) {
 			mAppInfo = new AppInfo();
@@ -47,5 +46,20 @@ public class CountManager {
 			}
 		}
 		return mAppInfo;
+	}
+	
+	
+	/**
+	 * To get all Apps which were installed by the user, in other words, they
+	 * ARE NOT system apps
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static List<AppInfo> getInstalledApps(Context context){
+		List<AppInfo> appList = new ArrayList<AppInfo>();
+		
+		
+		return appList;
 	}
 }

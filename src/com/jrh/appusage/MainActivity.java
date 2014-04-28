@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnItemSelectedListener{
 	private Spinner mSpinner;
@@ -53,7 +54,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener{
 	private void initUI(){
 		mTitle = (TextView) findViewById(R.id.app_name);
 		mTotal = (TextView) findViewById(R.id.total);
-		mListView = (ListView) findViewById(R.id.listView1);
+		mListView = (ListView) findViewById(R.id.applist);
 		mSpinner = (Spinner) findViewById(R.id.mode_spinner);
 		mSpinner.setOnItemSelectedListener(this);
 	}
@@ -61,13 +62,12 @@ public class MainActivity extends Activity implements OnItemSelectedListener{
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
-		// TODO Auto-generated method stub
-		
+		String item = parent.getItemAtPosition(position).toString();
+		Toast.makeText(this, item, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
-		// TODO Auto-generated method stub
-		
+        // Another interface callback
 	}
 }
